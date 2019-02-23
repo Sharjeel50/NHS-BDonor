@@ -1,4 +1,4 @@
-const {ipcRenderer} = require('electron').remote;
+const { ipcRenderer } = require('electron').remote;
 
 const form = document.querySelector('form')
 

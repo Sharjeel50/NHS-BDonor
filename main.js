@@ -1,4 +1,5 @@
-const { app, BrowserWindow, Menu, ipcMain } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
+const ipcMain = require('electron').ipcMain;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -24,7 +25,7 @@ function createWindow () {
   }
 
   // Catching the input data from the html
-  ipc.on('Request:bloodType', function(event, item){
+  ipcMain.on('Request:bloodType', function(event, item){
     console.log(item);
     menu.webContents.send('Request:bloodType', item)
     createRequestDonor.close();
@@ -35,11 +36,17 @@ function createWindow () {
     {
       label: 'Menu',
       submenu: [
-        {label: 'Request Donor', click() { createRequestDonor(); }},
+        {label: 'Request Donor', click() { createRequestDonor(); }}, // Run function to create a new window
         {label: 'View Patients'},
         {label: 'Exit', click() { app.quit() }}
       ]
-  }
+  },
+  {
+    label: 'Developer Tools',
+    submenu: [
+      {label: 'Console', click(item, focusedWindow) { focusedWindow.toggleDevTools(); } } // Run function to create a new window
+    ]
+}
 ])
   Menu.setApplicationMenu(menu);
 }
