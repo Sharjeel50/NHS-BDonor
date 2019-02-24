@@ -27,8 +27,9 @@ function createWindow () {
   // Catching the input data from the html
   ipcMain.on('Request:bloodType', function(event, item){
     console.log(item);
-    menu.webContents.send('Request:bloodType', item)
+    win.webContents.send('Request:bloodType', item)
     createRequestDonor.close();
+
   })
 
   // Menu on the main window
