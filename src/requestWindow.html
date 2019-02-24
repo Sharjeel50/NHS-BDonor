@@ -14,6 +14,20 @@
       </div>
       <button type="submit" name="button"> Request </button>
     </form>
-    <script type="text/javascript" src="C:\Users\Sharjeel Jan\Desktop\NHS-App\src\requestWindow.js"></script>
   </body>
+  <script type="text/javascript">
+
+      const { ipcRenderer } = require('electron').remote;
+      const form = document.querySelector('form')
+      form.addEventListener('submit', submitForm);
+
+      function submitForm(e){
+        const bloodType = document.getElementById("bloodType").value;
+        e.preventDefault();
+        console.log("working");
+        console.log(bloodType);
+        ipcRenderer.send('Request:bloodType', bloodType);
+    }
+
+  </script>
 </html>

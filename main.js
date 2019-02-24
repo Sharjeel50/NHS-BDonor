@@ -20,7 +20,7 @@ function createWindow () {
 
   // Window for the user to request for a donor
   function createRequestDonor(){
-    requestWindow = new BrowserWindow({ width: 350, height: 500 })
+    requestWindow = new BrowserWindow({ width: 600, height: 500 })
     requestWindow.loadFile('src/requestWindow.html')
   }
 
