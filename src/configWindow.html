@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form>
+      <div>
+
+        <label> Hospital Name </label>
+        <input type="text" name="" id="hospitalName" value="">
+
+        <label> Street address </label>
+        <input type="text" name="" id="streetAddress" value="">
+
+        <label> City </label>
+        <input type="text" name="" id="City" value="">
+
+        <label> Postal Code </label>
+        <input type="text" name="" id="postalCode" value="">
+
+      </div>
+      <button type="submit" name="button"> Setup </button>
+    </form>
+  </body>
+  <script type="text/javascript">
+      const { ipcRenderer } = require('electron');
+      const form = document.querySelector('form')
+
+      form.addEventListener('submit', sendSetup);
+
+      function sendSetup(e){
+        const hospitalName = document.getElementById("hospitalName").value;
+        const streetAddress = document.getElementById("streetAddress").value;
+        const cityName = document.getElementById("City").value;
+        const postalCode = document.getElementById("postalCode").value;
+        e.preventDefault();
+        ipcRenderer.send('setupData', hospitalName, streetAddress, cityName, postalCode);
+    }
+
+  </script>
+</html>

@@ -5,9 +5,10 @@ const ipcMain = require('electron').ipcMain;
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 let requestWindow
+let configWindow
 
 function createWindow () {
-  win = new BrowserWindow({ width: 800, height: 600 })
+  win = new BrowserWindow({ width: 1500, height: 850 })
   win.loadFile('src/index.html') // Refer to the html file for the window
 
   // Open the DevTools.
@@ -28,9 +29,25 @@ function createWindow () {
   ipcMain.on('Request:bloodType', function(event, item){
     console.log(item);
     win.webContents.send('Request:bloodType', item)
-    createRequestDonor.close();
 
   })
+
+
+
+  function createConfigWidow(){
+    configWindow = new BrowserWindow({ width: 600, height: 500 })
+    configWindow.loadFile('src/configWindow.html')
+  }
+
+  // Catching the input data from the html
+  ipcMain.on('setupData', function(event, hospitalName, streetAddress, cityName, postalCode ){
+    console.log(hospitalName, streetAddress, cityName, postalCode);
+    win.webContents.send('setupData', hospitalName, streetAddress, cityName, postalCode);
+
+  })
+
+
+
 
   // Menu on the main window
   var menu = Menu.buildFromTemplate([
@@ -43,9 +60,16 @@ function createWindow () {
       ]
   },
   {
+    label: 'Configuration',
+    submenu: [
+      {label: 'Setup', click() { createConfigWidow(); }} // Run function to create a new window
+    ]
+  },
+  {
     label: 'Developer Tools',
     submenu: [
-      {label: 'Console', click(item, focusedWindow) { focusedWindow.toggleDevTools(); } } // Run function to create a new window
+      {label: 'Console', click(item, focusedWindow) { focusedWindow.toggleDevTools(); } },
+      {role: 'reload'} // Run function to create a new window
     ]
 }
 ])
