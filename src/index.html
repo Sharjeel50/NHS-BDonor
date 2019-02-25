@@ -3,26 +3,83 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="C:\Users\Sharjeel Jan\Desktop\NHS-App\assets\css\index.css">
-    <title> BDonor </title>
+    <title>B/Donor</title>
   </head>
   <body>
-    <h1>working</h1>
+    <h1> B/Donor </h1>
+    <div class="sideBar">
+      <ul>
+        <li>Request Donor</li>
+        <li> <a href="/src/viewPatients" > View Patients </a></li>
+        <li> <a href="/src/viewDonors"></a> Donors </li>
+      </ul>
+    </div>
+
     <ul></ul>
+
+    <div>
+      <table id="requestContents">
+        <tr>
+          <th>Request Type</th>
+          <th>Blood Type</th>
+          <th>Notice</th>
+        </tr>
+      </table>
+    </div>
+
   </body>
 
   <script type="text/javascript">
 
-    const electron = require('electron');
-    const { ipcRenderer } = electron;
+    const electron = require('electron'); // declared once, no need to be decalerd again
+    const { ipcRenderer } = electron;  // same as above comment
 
-    const ul = document.querySelector('ul')
-    ipcRenderer.on('Request:bloodType', function(e, type){
-      // Create a list
-      const li = document.createElement('li')
-      const typeText = document.createTextNode(type)
-      // Add type to li and then add li to ul
-      li.appendChild(typeText)
-      ul.appendChild(li)
+    console.log(document.getElementById("requestContents"))
+
+    ipcRenderer.on('Request:DonorInformation', function(e, requestType, bloodType, Notice) {
+
+      var table = document.getElementById("requestContents");
+      var row = table.insertRow(table.getElementsByTagName("tr").length);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      cell1.innerHTML =  requestType;
+      cell2.innerHTML =  bloodType;
+      cell3.innerHTML =  Notice;
+
+      // Create another row within the table
+    //  const createRow = document.createElement('tr')
+    ///  const requestTypeAdd = document.createElement('td')
+  //    const bloodTypeAdd = document.createElement('td')
+    //  const noticeAdd = document.createElement('td')
+
+      // Create a text for the data coming from requestWidow
+    //  const requestTypeText = document.createTextNode(requestType)
+  //    const bloodTypeText = document.createTextNode(bloodType)
+    //  const NoticeText = document.createTextNode(Notice)
+
+      // Add text to the td
+    //  requestTypeAdd.appendChild(requestTypeText)
+    //  bloodTypeAdd.appendChild(bloodTypeText)
+    //  noticeAdd.appendChild(NoticeText)
+
+      // Add the created td's to the tr
+    //  createRow.appendChild(requestTypeAdd)
+    //  createRow.appendChild(bloodTypeAdd)
+    //  createRow.appendChild(noticeAdd)
+
+      // Add tr to the table
+    //  table.appendChild(createRow)
+
+    })
+
+  </script>
+
+  <script type="text/javascript">
+    //const addTitle = document.querySelector('title')
+    ipcRenderer.on('setupData', function(e, hospitalName, streetAddress, cityName, postalCode ){
+      // Add Hospital name as Title
+      //addTitle.appendChild(hospitalName);
     })
 
   </script>

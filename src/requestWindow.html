@@ -5,17 +5,26 @@
     <title> Donor Request </title>
   </head>
   <body>
+
     <form>
       <div>
+
+        <label> Request Type </label>
+        <input type="text" name="" id="requestType" value="">
+
         <label> Blood Type </label>
         <input type="text" name="" id="bloodType" value="">
-        <label> Location </label>
-        <input type="text" name="" id="Location" value="">
+
+        <label> Notice </label>
+        <input type="text" name="" id="Notice" value="">
+
       </div>
       <button type="submit" name="button"> Request </button>
     </form>
+
   </body>
   <script type="text/javascript">
+
       const { ipcRenderer } = require('electron');
       //const { ipcRenderer } = require('electron').ipcRenderer;
       const form = document.querySelector('form')
@@ -23,8 +32,10 @@
 
       function submitForm(e){
         const bloodType = document.getElementById("bloodType").value;
+        const requestType = document.getElementById("requestType").value;
+        const Notice = document.getElementById("Notice").value;
         e.preventDefault();
-        ipcRenderer.send('Request:bloodType', bloodType);
+        ipcRenderer.send('Request:DonorInformation', requestType, bloodType, Notice);
     }
 
   </script>
