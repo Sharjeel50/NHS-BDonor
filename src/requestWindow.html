@@ -1,32 +1,77 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <style>
+      body {
+        background-color: #f4f4f2;
+      }
+
+      ​input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type=submit]:hover {
+        background-color: #45a049;
+      }
+
+      #input {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+      }
+
+    </style>
     <meta charset="utf-8">
     <title> Donor Request </title>
   </head>
   <body>
-
-    <form>
-      <div>
+    <h2>Request Donor</h2>
+    <form >
+      <div id="input">
 
         <label> Request Type </label>
         <input type="text" name="" id="requestType" value="">
 
-        <label> Blood Type </label>
-        <input type="text" name="" id="bloodType" value="">
-
         <label> Notice </label>
         <input type="text" name="" id="Notice" value="">
+
+        <label> Blood Type </label>
+        <select name="BloodList" id="bloodType">
+          <option value="O-positive">O-positive</option>
+          <option value="O-negative">O-negative</option>
+          <option value="A-positive">A-positive</option>
+          <option value="A-negative">A-negative</option>
+          <option value="B-positive">B-positive</option>
+          <option value="B-negative">B-negative</option>
+          <option value="AB-positive">AB-positive</option>
+          <option value="AB-negative">AB-negative</option>
+        </select>
 
       </div>
       <button type="submit" name="button"> Request </button>
     </form>
-
   </body>
-  <script type="text/javascript">
 
+  <script type="text/javascript">
       const { ipcRenderer } = require('electron');
-      //const { ipcRenderer } = require('electron').ipcRenderer;
+
       const form = document.querySelector('form')
       form.addEventListener('submit', submitForm);
 
@@ -37,6 +82,6 @@
         e.preventDefault();
         ipcRenderer.send('Request:DonorInformation', requestType, bloodType, Notice);
     }
-
   </script>
+
 </html>

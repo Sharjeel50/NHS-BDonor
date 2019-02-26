@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap fro the table -->
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="C:\Users\Sharjeel Jan\Desktop\NHS-App\assets\css\index.css">
-    <title>B/Donor</title>
+
+    <style>
+
+    body {
+      background-color: #f4f4f2;
+    }
+
+    table {
+      font-size: 12px;
+      font-weight: normal;
+    }
+
+    #requestContents {
+      width: 650px !important;
+      margin-top: 1px;
+      margin-left: 300px;
+    }
+
+    #donorContents {
+      width: 1100x !important;
+      margin-top: 300px;
+      margin-left: 300px;
+    }
+
+    </style>
+
+    <title>BDonor</title>
   </head>
   <body>
-    <h1> B/Donor </h1>
+    <h1> BDonor </h1>
     <div class="sideBar">
       <ul>
         <li>Request Donor</li>
@@ -15,14 +41,35 @@
       </ul>
     </div>
 
-    <ul></ul>
+    <div class="requestsContainer">
+    </div>
+
+    <div class="donorContainer">
+    </div>
 
     <div>
-      <table id="requestContents">
+      <table id="requestContents" class="table table-striped table-bordered table-hover table-condensed">
         <tr>
-          <th>Request Type</th>
-          <th>Blood Type</th>
+          <th width="80" >Request ID</th>
+          <th width="130" >Request Type</th>
+          <th width="90" >Blood Type</th>
           <th>Notice</th>
+          <th>Request Date</th>
+        </tr>
+      </table>
+    </div>
+
+    <div>
+      <table id="donorContents" class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+          <th>Request ID</th>
+          <th>NHS No.</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Blood Type</th>
+          <th>Existing Medication</th>
+          <th>Heart Condition</th>
+          <th>NHS History</th>
         </tr>
       </table>
     </div>
@@ -33,53 +80,54 @@
 
     const electron = require('electron'); // declared once, no need to be decalerd again
     const { ipcRenderer } = electron;  // same as above comment
+    var currentdate = new Date(); // Getting current date and time
 
-    console.log(document.getElementById("requestContents"))
+    ipcRenderer.on('Request:DonorInformation', function(event, requestType, bloodType, Notice) {
 
-    ipcRenderer.on('Request:DonorInformation', function(e, requestType, bloodType, Notice) {
+      var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/"
+                + currentdate.getFullYear() + "  "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes()
 
       var table = document.getElementById("requestContents");
-      var row = table.insertRow(table.getElementsByTagName("tr").length);
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      var cell3 = row.insertCell(2);
-      cell1.innerHTML =  requestType;
-      cell2.innerHTML =  bloodType;
-      cell3.innerHTML =  Notice;
 
-      // Create another row within the table
-    //  const createRow = document.createElement('tr')
-    ///  const requestTypeAdd = document.createElement('td')
-  //    const bloodTypeAdd = document.createElement('td')
-    //  const noticeAdd = document.createElement('td')
+      const createRow = document.createElement('tr')
+      const requestIDAdd = document.createElement('td')
+      const requestTypeAdd = document.createElement('td')
+      const bloodTypeAdd = document.createElement('td')
+      const noticeAdd = document.createElement('td')
+      const dateAdd = document.createElement('td')
 
-      // Create a text for the data coming from requestWidow
-    //  const requestTypeText = document.createTextNode(requestType)
-  //    const bloodTypeText = document.createTextNode(bloodType)
-    //  const NoticeText = document.createTextNode(Notice)
+      const requestID = document.createTextNode(" ")
+      const requestTypeText = document.createTextNode(requestType)
+      const bloodTypeText = document.createTextNode(bloodType)
+      const NoticeText = document.createTextNode(Notice)
+      const dateText = document.createTextNode(datetime)
 
-      // Add text to the td
-    //  requestTypeAdd.appendChild(requestTypeText)
-    //  bloodTypeAdd.appendChild(bloodTypeText)
-    //  noticeAdd.appendChild(NoticeText)
+      requestIDAdd.appendChild(requestID)
+      requestTypeAdd.appendChild(requestTypeText)
+      bloodTypeAdd.appendChild(bloodTypeText)
+      noticeAdd.appendChild(NoticeText)
+      dateAdd.appendChild(dateText)
 
-      // Add the created td's to the tr
-    //  createRow.appendChild(requestTypeAdd)
-    //  createRow.appendChild(bloodTypeAdd)
-    //  createRow.appendChild(noticeAdd)
+      createRow.appendChild(requestIDAdd)
+      createRow.appendChild(requestTypeAdd)
+      createRow.appendChild(bloodTypeAdd)
+      createRow.appendChild(noticeAdd)
+      createRow.appendChild(dateAdd)
 
-      // Add tr to the table
-    //  table.appendChild(createRow)
+      table.appendChild(createRow)
 
     })
 
   </script>
 
+
   <script type="text/javascript">
-    //const addTitle = document.querySelector('title')
+
     ipcRenderer.on('setupData', function(e, hospitalName, streetAddress, cityName, postalCode ){
-      // Add Hospital name as Title
-      //addTitle.appendChild(hospitalName);
+      document.title = hospitalName + " " + "|" + cityName + " " + "|" + streetAddress
     })
 
   </script>

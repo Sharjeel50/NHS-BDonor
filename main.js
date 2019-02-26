@@ -8,7 +8,7 @@ let requestWindow
 let configWindow
 
 function createWindow () {
-  win = new BrowserWindow({ width: 1500, height: 850 })
+  win = new BrowserWindow({ width: 1700, height: 950 })
   win.loadFile('src/index.html') // Refer to the html file for the window
 
   // Open the DevTools.
@@ -21,14 +21,14 @@ function createWindow () {
 
   // Window for the user to request for a donor
   function createRequestDonor(){
-    requestWindow = new BrowserWindow({ width: 600, height: 500 })
+    requestWindow = new BrowserWindow({ width: 300, height: 500 })
     requestWindow.loadFile('src/requestWindow.html')
   }
 
   // Catching the input data from the html
   ipcMain.on('Request:DonorInformation', function(event, requestType, bloodType, Notice){
     console.log(requestType, bloodType, Notice);
-    win.webContents.send('Request:bloodType', requestType, bloodType, Notice);
+    win.webContents.send('Request:DonorInformation', requestType, bloodType, Notice);
 
   })
 
@@ -69,7 +69,7 @@ function createWindow () {
     label: 'Developer Tools',
     submenu: [
       {label: 'Console', click(item, focusedWindow) { focusedWindow.toggleDevTools(); } },
-      {role: 'reload'} // Run function to create a new window
+      {role: 'reload'}
     ]
 }
 ])

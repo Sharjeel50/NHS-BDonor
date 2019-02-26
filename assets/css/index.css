@@ -1,3 +1,10 @@
 .background {
   color: green;
 }
+
+.requestsContainer {
+  width: 200px;
+  background: red;
+  margin: 20px auto;
+  display: inline-block;
+}

@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <style >
+      body {
+        background-color: #f4f4f2;
+      }
+    </style>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
     <form>
       <div>
-
         <label> Hospital Name </label>
         <input type="text" name="" id="hospitalName" value="">
-
         <label> Street address </label>
         <input type="text" name="" id="streetAddress" value="">
-
         <label> City </label>
         <input type="text" name="" id="City" value="">
-
         <label> Postal Code </label>
         <input type="text" name="" id="postalCode" value="">
-
       </div>
       <button type="submit" name="button"> Setup </button>
     </form>
   </body>
   <script type="text/javascript">
-    
+
       const { ipcRenderer } = require('electron');
       const form = document.querySelector('form')
 
