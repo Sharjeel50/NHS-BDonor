@@ -11,9 +11,6 @@ function createWindow () {
   win = new BrowserWindow({ width: 1700, height: 950 })
   win.loadFile('src/index.html') // Refer to the html file for the window
 
-  // Open the DevTools.
-  win.webContents.openDevTools()
-
   // Emitted when the window is closed.
   win.on('closed', () => {
     win = null
