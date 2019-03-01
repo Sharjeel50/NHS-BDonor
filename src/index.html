@@ -1,170 +1,131 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap fro the table -->
-    <meta charset="UTF-8">
-
-    <style>
-
-        body {
-            background-color: #eaeff7;
-        }
-
-        table {
-
-            display: block;
-            overflow-y: scroll;
-            font-size: 12px;
-            font-weight: normal;
-            height: 300px;
-        }
-
-        #requestContents {
-            width: 650px !important;
-            margin-top: 1px;
-            margin-left: 300px;
-        }
-
-        #donorContents {
-            width: 1100x !important;
-            margin-top: 300px;
-            margin-left: 300px;
-        }
-
-        #searchBar ul {
-            text-decoration: none;
-
-        }
-
-    </style>
-
-    <title>BDonor</title>
-  </head>
-  <body>
-   
-      <div class="sideBar">
-          <h1> BDonor </h1>
-          <ul>
-              <li>Request Donor</li>
-              <li> <a href="/src/viewPatients"> View Patients </a></li>
-              <li> <a href="/src/viewDonors"></a> Donors </li>
-          </ul>
+   <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Not using it, but dont remove it. It messes up the whole layout somehow -->
+      <meta charset="UTF-8">
+      <style>
+         body {
+         background-color: white;
+         }
+         #searchBar {
+         text-decoration: none;
+         }
+         .sideBar {
+         position: absolute;
+         background-color: white;
+         height: 950px;
+         width: 210px;
+         color: black;
+         text-decoration: none;
+         border-color: black;
+         }
+         header {
+         background-color: white;
+         height;
+         30px;
+         padding: 40px;
+         text-align: center;
+         font-size: 35px;
+         color: white;
+         }
+      </style>
+      <title>BDonor</title>
+   </head>
+   <body>
+      <header>
+         <h5>Request's Dashboard</h5>
+      </header>
+      <div class="sideBar" id="sideBar">
       </div>
-
-      <div class="requestsContainer">
+      <div class="container">
+         <div class="row">
+            <div class="col-xs-12">
+               <table id="requestContents" class="table table-condensed table-striped">
+                  <tr>
+                     <th>Request ID</th>
+                     <th>Request Type</th>
+                     <th>Blood Type</th>
+                     <th>Notice</th>
+                     <th>Request Date</th>
+                  </tr>
+               </table>
+            </div>
+         </div>
       </div>
-
-      <div class="donorContainer">
-      </div>
-
-      <div>
-          <table id="requestContents" class="table table-striped table-bordered table-hover table-condensed" frame="box">
-              <caption><h4>Requests</h4></caption>
-              <colgroup>
-                  <col style="width: 128px">
-                  <col style="width: 136px">
-                  <col style="width: 84px">
-                  <col style="width: 113px">
-                  <col style="width: 123px">
-              </colgroup>
-              <tr>
-                  <th>Request ID</th>
-                  <th>Request Type</th>
-                  <th>Blood Type</th>
-                  <th>Notice</th>
-                  <th>Request Date</th>
-              </tr>
-          </table>
-      </div>
-
       <div id="searchBar">
-          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Request ID..." title="Type in a name">
+         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Request ID..." title="Type in a name">
       </div>
       <div>
-          <table id="donorContents" class="table table-striped table-bordered table-hover table-condensed">
-              <caption><h4>Donor's</h4></caption>
-              <colgroup>
-                  <col style="width: 128px">
-                  <col style="width: 140px">
-                  <col style="width: 138px">
-                  <col style="width: 145px">
-                  <col style="width: 86px">
-                  <col style="width: 172px">
-                  <col style="width: 141px">
-                  <col style="width: 131px">
-              </colgroup>
-              <tr>
-                  <th>Request ID</th>
-                  <th>NHS No.</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Blood Type</th>
-                  <th>Existing Medication</th>
-                  <th>Heart Condition</th>
-                  <th>NHS History</th>
-              </tr>
-          </table>
+      <div class="container">
+         <div class="row">
+            <div class="col-xs-12">
+               <table id="donorContents" class="table table-condensed table-striped">
+                  <tr>
+                     <th>Request ID</th>
+                     <th>NHS No.</th>
+                     <th>First Name</th>
+                     <th>Last Name</th>
+                     <th>Blood Type</th>
+                     <th>Existing Medication</th>
+                     <th>Heart Condition</th>
+                     <th>NHS History</th>
+                  </tr>
+               </table>
+            </div>
+         </div>
       </div>
+   </body>
+   <script type="text/javascript">
+      const electron = require('electron'); // declared once, no need to be declared again
+      const { ipcRenderer } = electron;  // same as above comment
+      var currentdate = new Date(); // Getting current date and time
 
-  </body>
+      ipcRenderer.on('Request:DonorInformation', function (event, requestType, bloodType, Notice) {
 
-  <script type="text/javascript">
+          var datetime = currentdate.getDate() + "/"
+              + (currentdate.getMonth() + 1) + "/"
+              + currentdate.getFullYear() + "   "
+              + currentdate.getHours() + ":"
+              + currentdate.getMinutes()
 
-    const electron = require('electron'); // declared once, no need to be decalerd again
-    const { ipcRenderer } = electron;  // same as above comment
-    var currentdate = new Date(); // Getting current date and time
+          var table = document.getElementById("requestContents");
 
-    ipcRenderer.on('Request:DonorInformation', function(event, requestType, bloodType, Notice) {
+          const createRow = document.createElement('tr')
+          const requestIDAdd = document.createElement('td')
+          const requestTypeAdd = document.createElement('td')
+          const bloodTypeAdd = document.createElement('td')
+          const noticeAdd = document.createElement('td')
+          const dateAdd = document.createElement('td')
 
-      var datetime = currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/"
-                + currentdate.getFullYear() + "  "
-                + currentdate.getHours() + ":"
-                + currentdate.getMinutes()
+          const requestID = document.createTextNode(" ")
+          const requestTypeText = document.createTextNode(requestType)
+          const bloodTypeText = document.createTextNode(bloodType)
+          const NoticeText = document.createTextNode(Notice)
+          const dateText = document.createTextNode(datetime)
 
-      var table = document.getElementById("requestContents");
+          requestIDAdd.appendChild(requestID)
+          requestTypeAdd.appendChild(requestTypeText)
+          bloodTypeAdd.appendChild(bloodTypeText)
+          noticeAdd.appendChild(NoticeText)
+          dateAdd.appendChild(dateText)
 
-      const createRow = document.createElement('tr')
-      const requestIDAdd = document.createElement('td')
-      const requestTypeAdd = document.createElement('td')
-      const bloodTypeAdd = document.createElement('td')
-      const noticeAdd = document.createElement('td')
-      const dateAdd = document.createElement('td')
+          createRow.appendChild(requestIDAdd)
+          createRow.appendChild(requestTypeAdd)
+          createRow.appendChild(bloodTypeAdd)
+          createRow.appendChild(noticeAdd)
+          createRow.appendChild(dateAdd)
 
-      const requestID = document.createTextNode(" ")
-      const requestTypeText = document.createTextNode(requestType)
-      const bloodTypeText = document.createTextNode(bloodType)
-      const NoticeText = document.createTextNode(Notice)
-      const dateText = document.createTextNode(datetime)
+          table.appendChild(createRow)
 
-      requestIDAdd.appendChild(requestID)
-      requestTypeAdd.appendChild(requestTypeText)
-      bloodTypeAdd.appendChild(bloodTypeText)
-      noticeAdd.appendChild(NoticeText)
-      dateAdd.appendChild(dateText)
+      })
+   </script>
+   <script type="text/javascript">
+      ipcRenderer.on('setupData', function (e, hospitalName, streetAddress, cityName, postalCode) {
+          document.title = hospitalName + " " + "|" + cityName + " " + "|" + streetAddress
+      })
 
-      createRow.appendChild(requestIDAdd)
-      createRow.appendChild(requestTypeAdd)
-      createRow.appendChild(bloodTypeAdd)
-      createRow.appendChild(noticeAdd)
-      createRow.appendChild(dateAdd)
-
-      table.appendChild(createRow)
-
-    })
-
-  </script>
-
-
-  <script type="text/javascript">
-
-    ipcRenderer.on('setupData', function(e, hospitalName, streetAddress, cityName, postalCode ){
-      document.title = hospitalName + " " + "|" + cityName + " " + "|" + streetAddress
-    })
-
-  </script>
-
-  <script>
+   </script>
+   <script>
       function myFunction() {
           var input, filter, table, tr, td, i, txtValue;
           input = document.getElementById("myInput");
@@ -183,5 +144,5 @@
               }
           }
       }
-  </script>
+   </script>
 </html>

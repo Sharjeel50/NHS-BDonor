@@ -1,62 +1,67 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <style >
-      body {
-        background-color: #f4f4f2;
-      }
-    </style>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <form onclick=getLocation();>
-      <div>
-        <p id="plswork"></p>
-        <label> Hospital Name </label>
-        <input type="text" name="" id="hospitalName" value="">
-        <label> Street address </label>
-        <input type="text" name="" id="streetAddress" value="">
-        <label> City </label>
-        <input type="text" name="" id="City" value="">
-        <label> Postal Code </label>
-        <input type="text" name="" id="postalCode" value="">
+   <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <style >
+         body {
+           background-color: #f4f4f2;
+         }
+         .center_div {
+         margin: 0 auto;
+         width:80% /* value of your choice which suits your alignment */
+         }
+      </style>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+      <div class="container center_div">
+         <div class="row">
+            <div>
+               <h2>Request Donor</h2>
+               <form>
+                 <div class="form-group">
+                   <label> Hospital Name </label>
+                   <input type="text" name="" id="hospitalName" value="" class="form-control">
+                 </div>
+                 <div class="form-group">
+                   <label> Street address </label>
+                   <input type="text" name="" id="streetAddress" value="" class="form-control">
+                 </div>
+                 <div class="form-group">
+                   <label> City </label>
+                   <input type="text" name="" id="City" value="" class="form-control">
+                 </div>
+                 <div class="form-group">
+                   <label> Postal Code </label>
+                   <input type="text" name="" id="postalCode" value="" class="form-control">
+                 </div>
+                  <button type="submit" name="button" id="button" class="btn btn-primary"> Setup </button>
+               </form>
+            </div>
+         </div>
       </div>
-      <button type="submit" name="button"> Setup </button>
-    </form>
-  </body>
-  <script type="text/javascript">
+   </body>
+<script type="text/javascript">
+  const { ipcRenderer } = require('electron');
+  const form = document.querySelector('form')
 
-      const { ipcRenderer } = require('electron');
-      const form = document.querySelector('form')
+  form.addEventListener('submit', sendSetup);
+  form.addEventListener('submit', getLocation);
 
-      form.addEventListener('submit', sendSetup);
+  function sendSetup(e) {
+    const hospitalName = document.getElementById("hospitalName").value;
+    const streetAddress = document.getElementById("streetAddress").value;
+    const cityName = document.getElementById("City").value;
+    const postalCode = document.getElementById("postalCode").value;
+    e.preventDefault();
+    ipcRenderer.send('setupData', hospitalName, streetAddress, cityName, postalCode);
 
-      function sendSetup(e) {
-        const hospitalName = document.getElementById("hospitalName").value;
-        const streetAddress = document.getElementById("streetAddress").value;
-        const cityName = document.getElementById("City").value;
-        const postalCode = document.getElementById("postalCode").value;
-        e.preventDefault();
-        ipcRenderer.send('setupData', hospitalName, streetAddress, cityName, postalCode);
+  }
 
-    }
-  </script>
+  function getLocation(){
+  fetch('https://api.ipgeolocation.io/ipgeo?apiKey=0f1e2eb168174869aebbfa0fc92010d8').then(function(res){ console.log(res);})
+  }
 
-  <script>
-      var x = document.getElementById("plswork");
-
-      function getLocation() {
-          if (navigator.geolocation) {
-              navigator.geolocation.watchPosition(showPosition);
-          } else {
-              x.innerHTML = "Geolocation is not supported by this browser.";
-          }
-      }
-
-      function showPosition(position) {
-          x.innerHTML = "Latitude: " + position.coords.latitude +
-              "<br>Longitude: " + position.coords.longitude;
-      }
-  </script>
+</script>
 </html>

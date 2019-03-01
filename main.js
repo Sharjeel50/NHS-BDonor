@@ -32,7 +32,7 @@ function createWindow () {
 
 
   function createConfigWidow(){
-    configWindow = new BrowserWindow({ width: 600, height: 500 })
+    configWindow = new BrowserWindow({ width: 300, height: 500 })
     configWindow.loadFile('src/configWindow.html')
   }
 
