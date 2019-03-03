@@ -2,147 +2,133 @@
 <html>
    <head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Not using it, but dont remove it. It messes up the whole layout somehow -->
+      <link rel="stylesheet" href="../assets/css/index.css">
+      <script src="./index.js"></script>
       <meta charset="UTF-8">
-      <style>
-         body {
-         background-color: white;
-         }
-         #searchBar {
-         text-decoration: none;
-         }
-         .sideBar {
-         position: absolute;
-         background-color: white;
-         height: 950px;
-         width: 210px;
-         color: black;
-         text-decoration: none;
-         border-color: black;
-         }
-         header {
-         background-color: white;
-         height;
-         30px;
-         padding: 40px;
-         text-align: center;
-         font-size: 35px;
-         color: white;
-         }
-      </style>
       <title>BDonor</title>
    </head>
    <body>
+     <button type="button" name="button" onclick="viewWindow()"> Pls Work</button>
       <header>
          <h5>Request's Dashboard</h5>
       </header>
-      <div class="sideBar" id="sideBar">
+      <div class="sideBar" id="sideBar"></div>
+      <div class="container">
+        <h5>Donor Requests</h5>
+        <table class="table table-bordered table-condensed" id="requestContents" style="display: block; height: 150px; overflow-y: scroll">
+          <thead>
+            <tr>
+              <th width="20%">Request ID</th>
+              <th width="20%">Request Type</th>
+              <th width="20%">Blood Type</th>
+              <th width="20%">Notice</th>
+              <th width="20%">Request Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dummy Dat</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+            </tr>
+            <tr>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+            </tr>
+            <tr>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+            </tr>
+            <tr>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="container">
-         <div class="row">
-            <div class="col-xs-12">
-               <table id="requestContents" class="table table-condensed table-striped">
-                  <tr>
-                     <th>Request ID</th>
-                     <th>Request Type</th>
-                     <th>Blood Type</th>
-                     <th>Notice</th>
-                     <th>Request Date</th>
-                  </tr>
-               </table>
-            </div>
-         </div>
-      </div>
-      <div id="searchBar">
-         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Request ID..." title="Type in a name">
-      </div>
-      <div>
-      <div class="container">
-         <div class="row">
-            <div class="col-xs-12">
-               <table id="donorContents" class="table table-condensed table-striped">
-                  <tr>
-                     <th>Request ID</th>
-                     <th>NHS No.</th>
-                     <th>First Name</th>
-                     <th>Last Name</th>
-                     <th>Blood Type</th>
-                     <th>Existing Medication</th>
-                     <th>Heart Condition</th>
-                     <th>NHS History</th>
-                  </tr>
-               </table>
-            </div>
-         </div>
+        <h4>Donors</h4>
+        <input type="text" id="myInput" onkeyup="myFunction()">
+        <table class="table table-bordered table-condensed" id="donorContents" style="display: block; height: 270px; overflow-y: scroll">
+          <thead>
+            <tr>
+              <th width="20%">Request ID</th>
+              <th width="20%">NHS No.</th>
+              <th width="20%">Full name</th>
+              <th width="20%">Blood Type</th>
+              <th width="20%">Medical History</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Working</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td><a href="#"> Dummy Data </a></td>
+            </tr>
+            <tr>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td><a href="#"> Dummy Data </a></td>
+            </tr>
+            <tr>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>O Positive</td>
+              <td><a href="#"> Dummy Data </a></td>
+            </tr>
+            <tr>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td><a href="#"> Dummy Data </a></td>
+            </tr>
+            <tr>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td><a href="#"> Dummy Data </a></td>
+            </tr>
+            <tr>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td><a href="#"> Dummy Data </a></td>
+            </tr>
+            <tr>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td><a href="#"> Dummy Data </a></td>
+            </tr>
+            <tr>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td>Dummy Data</td>
+              <td><a href="#"> Dummy Data </a></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
    </body>
-   <script type="text/javascript">
-      const electron = require('electron'); // declared once, no need to be declared again
-      const { ipcRenderer } = electron;  // same as above comment
-      var currentdate = new Date(); // Getting current date and time
-
-      ipcRenderer.on('Request:DonorInformation', function (event, requestType, bloodType, Notice) {
-
-          var datetime = currentdate.getDate() + "/"
-              + (currentdate.getMonth() + 1) + "/"
-              + currentdate.getFullYear() + "   "
-              + currentdate.getHours() + ":"
-              + currentdate.getMinutes()
-
-          var table = document.getElementById("requestContents");
-
-          const createRow = document.createElement('tr')
-          const requestIDAdd = document.createElement('td')
-          const requestTypeAdd = document.createElement('td')
-          const bloodTypeAdd = document.createElement('td')
-          const noticeAdd = document.createElement('td')
-          const dateAdd = document.createElement('td')
-
-          const requestID = document.createTextNode(" ")
-          const requestTypeText = document.createTextNode(requestType)
-          const bloodTypeText = document.createTextNode(bloodType)
-          const NoticeText = document.createTextNode(Notice)
-          const dateText = document.createTextNode(datetime)
-
-          requestIDAdd.appendChild(requestID)
-          requestTypeAdd.appendChild(requestTypeText)
-          bloodTypeAdd.appendChild(bloodTypeText)
-          noticeAdd.appendChild(NoticeText)
-          dateAdd.appendChild(dateText)
-
-          createRow.appendChild(requestIDAdd)
-          createRow.appendChild(requestTypeAdd)
-          createRow.appendChild(bloodTypeAdd)
-          createRow.appendChild(noticeAdd)
-          createRow.appendChild(dateAdd)
-
-          table.appendChild(createRow)
-
-      })
-   </script>
-   <script type="text/javascript">
-      ipcRenderer.on('setupData', function (e, hospitalName, streetAddress, cityName, postalCode) {
-          document.title = hospitalName + " " + "|" + cityName + " " + "|" + streetAddress
-      })
-
-   </script>
-   <script>
-      function myFunction() {
-          var input, filter, table, tr, td, i, txtValue;
-          input = document.getElementById("myInput");
-          filter = input.value.toUpperCase();
-          table = document.getElementById("table");
-          tr = table.getElementsByTagName("tr");
-          for (i = 0; i < tr.length; i++) {
-              td = tr[i].getElementsByTagName("td")[0];
-              if (td) {
-                  txtValue = td.textContent || td.innerText;
-                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                      tr[i].style.display = "";
-                  } else {
-                      tr[i].style.display = "none";
-                  }
-              }
-          }
-      }
-   </script>
 </html>

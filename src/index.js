@@ -1,42 +1,75 @@
-
-const electron = require('electron'); // declared once, no need to be decalerd again
+const electron = require('electron'); // declared once, no need to be declared again
 const { ipcRenderer } = electron;  // same as above comment
+var currentdate = new Date(); // Getting current date and time
 
-console.log(document.getElementById("requestContents"))
+// Add info to table -- May need to be fixed
 
-ipcRenderer.on('Request:DonorInformation', function submitForm(e, requestType, bloodType, Notice) {
+ipcRenderer.on('Request:DonorInformation', function (event, requestType, bloodType, Notice) {
 
-  var table = document.getElementById("requestContents");
-  var row = table.insertRow(table.getElementsByTagName("tr").length);
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  cell1.innerHTML =  requestType;
-  cell2.innerHTML =  bloodType;
-  cell3.innerHTML =  Notice;
+    var datetime = currentdate.getDate() + "/"
+        + (currentdate.getMonth() + 1) + "/"
+        + currentdate.getFullYear() + "   "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes()
 
-  // Create another row within the table
-//  const createRow = document.createElement('tr')
-///  const requestTypeAdd = document.createElement('td')
-//    const bloodTypeAdd = document.createElement('td')
-//  const noticeAdd = document.createElement('td')
+    var table = document.getElementById("requestContents").getElementsByTagName('tbody')[0];
 
-  // Create a text for the data coming from requestWidow
-//  const requestTypeText = document.createTextNode(requestType)
-//    const bloodTypeText = document.createTextNode(bloodType)
-//  const NoticeText = document.createTextNode(Notice)
+    const createRow = document.createElement('tr')
+    const requestIDAdd = document.createElement('td')
+    const requestTypeAdd = document.createElement('td')
+    const bloodTypeAdd = document.createElement('td')
+    const noticeAdd = document.createElement('td')
+    const dateAdd = document.createElement('td')
 
-  // Add text to the td
-//  requestTypeAdd.appendChild(requestTypeText)
-//  bloodTypeAdd.appendChild(bloodTypeText)
-//  noticeAdd.appendChild(NoticeText)
+    const requestID = document.createTextNode(" ")
+    const requestTypeText = document.createTextNode(requestType)
+    const bloodTypeText = document.createTextNode(bloodType)
+    const NoticeText = document.createTextNode(Notice)
+    const dateText = document.createTextNode(datetime)
 
-  // Add the created td's to the tr
-//  createRow.appendChild(requestTypeAdd)
-//  createRow.appendChild(bloodTypeAdd)
-//  createRow.appendChild(noticeAdd)
+    requestIDAdd.appendChild(requestID)
+    requestTypeAdd.appendChild(requestTypeText)
+    bloodTypeAdd.appendChild(bloodTypeText)
+    noticeAdd.appendChild(NoticeText)
+    dateAdd.appendChild(dateText)
 
-  // Add tr to the table
-//  table.appendChild(createRow)
+    createRow.appendChild(requestIDAdd)
+    createRow.appendChild(requestTypeAdd)
+    createRow.appendChild(bloodTypeAdd)
+    createRow.appendChild(noticeAdd)
+    createRow.appendChild(dateAdd)
+
+    table.appendChild(createRow)
 
 })
+
+ ipcRenderer.on('setupData', function (e, hospitalName, streetAddress, cityName, postalCode) {
+     document.title = hospitalName + " " + "|" + cityName + " " + "|" + streetAddress
+ })
+
+ // Search Bar -- Dont Touch
+ function myFunction() {
+
+     input = document.getElementById("myInput");
+     filter = input.value.toUpperCase();
+     table = document.getElementById("donorContents");
+     tr = table.getElementsByTagName("tr");
+     for (i = 0; i < tr.length; i++) {
+         td = tr[i].getElementsByTagName("td")[0];
+         if (td) {
+             txtValue = td.textContent || td.innerText;
+             if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                 tr[i].style.display = "";
+             } else {
+                 tr[i].style.display = "none";
+             }
+         }
+     }
+ }
+
+
+// Open window with myFunction
+function viewWindow(){
+  console.log("Working")
+  ipcRenderer.send('createDonorWindow')
+}

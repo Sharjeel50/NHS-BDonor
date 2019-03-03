@@ -6,6 +6,7 @@ const ipcMain = require('electron').ipcMain;
 let win
 let requestWindow
 let configWindow
+let donorWindow
 
 function createWindow () {
   win = new BrowserWindow({ width: 1700, height: 950 })
@@ -24,7 +25,7 @@ function createWindow () {
 
   // Catching the input data from the html
   ipcMain.on('Request:DonorInformation', function(event, requestType, bloodType, Notice){
-    console.log(requestType, bloodType, Notice);
+    console.log("Request Type:", requestType, " - ", "Blood type:", bloodType," - ", "Notice:" ,Notice);
     win.webContents.send('Request:DonorInformation', requestType, bloodType, Notice);
 
   })
@@ -32,7 +33,7 @@ function createWindow () {
 
 
   function createConfigWidow(){
-    configWindow = new BrowserWindow({ width: 300, height: 500 })
+    configWindow = new BrowserWindow({ width: 330, height: 550 })
     configWindow.loadFile('src/configWindow.html')
   }
 
@@ -43,7 +44,11 @@ function createWindow () {
 
   })
 
-
+  // Create Donor viewing Page
+  function createDonorWindow(){
+    let donorWindow = new BrowserWindow({width: 500, height: 700})
+    donorWindow.loadFile('src/viewDonors.html')
+  }
 
 
   // Menu on the main window
@@ -52,7 +57,7 @@ function createWindow () {
       label: 'Menu',
       submenu: [
         {label: 'Request Donor', click() { createRequestDonor(); }}, // Run function to create a new window
-        {label: 'View Patients'},
+        {label: 'View Donors', click() { createDonorWindow(); }},
         {label: 'Exit', click() { app.quit() }}
       ]
   },
