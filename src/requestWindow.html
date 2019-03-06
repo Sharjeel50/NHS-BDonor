@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
  <head>
+   <link rel="stylesheet" href="../assets/css/requestWindow.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <meta charset="utf-8">
-    <style>
-       .center_div{
-       margin: 0 auto;
-       width:80% /* value of your choice which suits your alignment */
-       }
-       h2 {
-       padding-top: 20px;
-       padding-bottom: 20px
-       }
-    </style>
     <title> Donor Request </title>
  </head>
  <body>
@@ -42,26 +33,11 @@
                       <option value="AB Negative"> AB Negative </option>
                    </select>
                 </div>
-                <button type="submit" name="button" id="button" class="btn btn-primary"> Request </button>
+                <button type="button" name="button" id="requestButton" class="btn btn-primary"> Request </button>
              </form>
           </div>
        </div>
     </div>
  </body>
-
-  <script type="text/javascript">
-      const { ipcRenderer } = require('electron');
-
-      const form = document.querySelector('form')
-      form.addEventListener('submit', submitForm);
-
-      function submitForm(e){
-        const bloodType = document.getElementById("bloodType").value;
-        const requestType = document.getElementById("requestType").value;
-        const Notice = document.getElementById("Notice").value;
-        e.preventDefault();
-        ipcRenderer.send('Request:DonorInformation', requestType, bloodType, Notice);
-    }
-  </script>
-
+ <script src="./requestWindow.js"></script> <!-- Adding scripts here so the page can load and Js can get all elements within it-->
 </html>

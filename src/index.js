@@ -1,17 +1,8 @@
 const electron = require('electron'); // declared once, no need to be declared again
 const { ipcRenderer } = electron;  // same as above comment
 
-
-var currentdate = new Date(); // Getting current date and time
-
 // Add info to table -- May need to be fixed
 ipcRenderer.on('Request:DonorInformation', function (event, requestType, bloodType, Notice) {
-
-    var datetime = currentdate.getDate() + "/"
-        + (currentdate.getMonth() + 1) + "/"
-        + currentdate.getFullYear() + "   "
-        + currentdate.getHours() + ":"
-        + currentdate.getMinutes()
 
     var table = document.getElementById("requestContents").getElementsByTagName('tbody')[0];
 
