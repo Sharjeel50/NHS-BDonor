@@ -1,9 +1,10 @@
 const electron = require('electron'); // declared once, no need to be declared again
 const { ipcRenderer } = electron;  // same as above comment
+
+
 var currentdate = new Date(); // Getting current date and time
 
 // Add info to table -- May need to be fixed
-
 ipcRenderer.on('Request:DonorInformation', function (event, requestType, bloodType, Notice) {
 
     var datetime = currentdate.getDate() + "/"
@@ -69,7 +70,7 @@ ipcRenderer.on('Request:DonorInformation', function (event, requestType, bloodTy
 
 
 // Open window with myFunction
-function viewWindow(){
-  console.log("Working")
-  ipcRenderer.send('createDonorWindow')
-}
+//function viewWindow(){
+  //console.log("Working")
+//  main.openWindow('createDonorWindow')
+//}
