@@ -1,8 +1,12 @@
-.center_div{
-margin: 0 auto;
-width:80% /* value of your choice which suits your alignment */
+body {
+    background-color: #f4f4f2;
 }
+
+.center_div {
+    margin: 0 auto;
+    width: 80% /* value of your choice which suits your alignment */
+}
+
 h2 {
-padding-top: 20px;
-padding-bottom: 20px
+    padding-bottom: 10px
 }
