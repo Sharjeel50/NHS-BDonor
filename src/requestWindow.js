@@ -15,6 +15,8 @@ if (form) {
             return false;
         }
 
+        alert("Request Created")
+
         // ---------------------------------------------  Database --------------------------------------------------------
 
 		var mysql = require("mysql");

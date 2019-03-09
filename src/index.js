@@ -61,7 +61,38 @@ connection.query($queryString, (err, rows, fields) => {
     })
 
 
+// --------------------------------------- Need to get data from other micro service -----------------------------------------------------
+
+//var mysql = require("mysql");
+//var connection = mysql.createConnection({ // Make the connection to the database
+   // host: "localhost",
+   // user: "root",
+  //  password: null,
+ //   database: "donorTable"
+//});
+
+//connection.connect((err) => { // Check if conenction is made or not
+    //if (err) {
+   //     return console.log(" Connection Failed " + err);
+  //  }
+ //   console.log("Connected");
+//})
+
+//$queryString = "SELECT * FROM `donorTable`;"
+
+//connection.query($queryString, (err, rows, fields) => {
+    //if (err) {
+      //  return console.log("Error with Query");
+     //   console.log(fields);
+    //}
+    //console.log(rows);
+
+
 // --------------------------------------------------------------------------------------------
+
+
+
+
 
 
 // Dont mess with this shit for now
