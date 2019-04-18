@@ -10,7 +10,7 @@ let donorWindow
 
 function createWindow () {
   win = new BrowserWindow({ width: 1700, height: 950 })
-  win.loadFile('src/index.html') // Refer to the html file for the window
+  win.loadFile('./src/index.html') // Refer to the html file for the window
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -20,7 +20,7 @@ function createWindow () {
   // Window for the user to request for a donor
   function createRequestDonor(){
     requestWindow = new BrowserWindow({ width: 350, height: 500 })
-    requestWindow.loadFile('src/requestWindow.html')
+    requestWindow.loadFile('./src/requestWindow.html')
   }
 
   // Catching the input data from the html
@@ -34,7 +34,7 @@ function createWindow () {
 
   function createConfigWidow(){
     configWindow = new BrowserWindow({ width: 330, height: 550 })
-    configWindow.loadFile('src/configWindow.html')
+    configWindow.loadFile('./src/configWindow.html')
   }
 
   // Catching the input data from the html
@@ -47,7 +47,7 @@ function createWindow () {
   // Create Donor viewing Page
   function createDonorWindow(){
     let donorWindow = new BrowserWindow({width: 500, height: 700})
-    donorWindow.loadFile('src/viewDonors.html')
+    donorWindow.loadFile('./src/viewDonors.html')
   }
 
 
