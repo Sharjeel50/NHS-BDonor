@@ -1,134 +1,149 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
    <head>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Not using it, but dont remove it. It messes up the whole layout somehow -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <!-- Not using it, but dont remove it. It messes up the whole layout somehow -->
       <link rel="stylesheet" href="../assets/css/index.css">
-      <script src="./index.js"></script>
+      </script>
       <meta charset="UTF-8">
       <title>BDonor</title>
    </head>
    <body>
-     <button type="button" name="button" onclick="viewWindow()"> Pls Work</button>
       <header>
          <h5>Request's Dashboard</h5>
       </header>
-      <div class="sideBar" id="sideBar"></div>
       <div class="container">
-        <h5>Donor Requests</h5>
-        <table class="table table-bordered table-condensed" id="requestContents" style="display: block; height: 150px; overflow-y: scroll">
-          <thead>
-            <tr>
-              <th width="20%">Request ID</th>
-              <th width="20%">Request Type</th>
-              <th width="20%">Blood Type</th>
-              <th width="20%">Notice</th>
-              <th width="20%">Request Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Dummy Dat</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-            </tr>
-            <tr>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-            </tr>
-            <tr>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-            </tr>
-            <tr>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-            </tr>
-          </tbody>
-        </table>
+         <h5>Donor Requests</h5>
+         <table class="table table-bordered table-condensed" id="requestContents" style="display: block; height: 150px; overflow-y: scroll">
+            <thead>
+               <tr>
+                  <th width="20%">Request ID</th>
+                  <th width="20%">Request Type</th>
+                  <th width="20%">Blood Type</th>
+                  <th width="20%">Notice</th>
+                  <th width="20%">Request Date</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>Dummy</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+               </tr>
+            </tbody>
+         </table>
       </div>
       <div class="container">
-        <h4>Donors</h4>
-        <input type="text" id="myInput" onkeyup="myFunction()">
-        <table class="table table-bordered table-condensed" id="donorContents" style="display: block; height: 270px; overflow-y: scroll">
-          <thead>
-            <tr>
-              <th width="20%">Request ID</th>
-              <th width="20%">NHS No.</th>
-              <th width="20%">Full name</th>
-              <th width="20%">Blood Type</th>
-              <th width="20%">Medical History</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Working</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td><a href="#"> Dummy Data </a></td>
-            </tr>
-            <tr>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td><a href="#"> Dummy Data </a></td>
-            </tr>
-            <tr>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>O Positive</td>
-              <td><a href="#"> Dummy Data </a></td>
-            </tr>
-            <tr>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td><a href="#"> Dummy Data </a></td>
-            </tr>
-            <tr>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td><a href="#"> Dummy Data </a></td>
-            </tr>
-            <tr>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td><a href="#"> Dummy Data </a></td>
-            </tr>
-            <tr>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td><a href="#"> Dummy Data </a></td>
-            </tr>
-            <tr>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td>Dummy Data</td>
-              <td><a href="#"> Dummy Data </a></td>
-            </tr>
-          </tbody>
-        </table>
+         <!--<button type="button" name="button" onclick="viewWindow()"> Pls Work</button>-->
+         <h5>Donors</h5>
+         <input type="text" id="myInput" onkeyup="myFunction()">
+         <table class="table table-bordered table-condensed" id="donorContents" style="display: block; height: 270px; overflow-y: scroll">
+            <thead>
+               <tr>
+                  <th width="20%">Request ID</th>
+                  <th width="20%">NHS No.</th>
+                  <th width="20%">Full name</th>
+                  <th width="20%">Blood Type</th>
+                  <th width="20%">Medical History</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>Working</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td><a href="#"> Dummy Data </a></td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td><a href="#"> Dummy Data </a></td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>O Positive</td>
+                  <td><a href="#"> Dummy Data </a></td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td><a href="#"> Dummy Data </a></td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td><a href="#"> Dummy Data </a></td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td><a href="#"> Dummy Data </a></td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td><a href="#"> Dummy Data </a></td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td><a href="#"> Dummy Data </a></td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>O Positive</td>
+                  <td><a href="#"> Dummy Data </a></td>
+               </tr>
+               <tr>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>Dummy Data</td>
+                  <td>O Positive</td>
+                  <td><a href="#"> Dummy Data </a></td>
+               </tr>
+            </tbody>
+         </table>
       </div>
    </body>
+   <script src="./js/index.js"></script>
 </html>

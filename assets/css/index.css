@@ -60,3 +60,12 @@ h5{
   overflow: hidden;
   table-layout: fixed;
 }
+
+table thead {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white;
+  color: black;
+}

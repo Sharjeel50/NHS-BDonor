@@ -1,67 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
- <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <meta charset="utf-8">
-    <style>
-       .center_div{
-       margin: 0 auto;
-       width:80% /* value of your choice which suits your alignment */
-       }
-       h2 {
-       padding-top: 20px;
-       padding-bottom: 20px
-       }
-    </style>
-    <title> Donor Request </title>
- </head>
- <body>
-    <div class="container center_div">
-       <div class="row">
-          <div>
-             <h2>Request Donor</h2>
-             <form>
-                <div class="form-group">
-                   <label for="requestType">Request Type</label>
-                   <input class="form-control" id="requestType">
-                </div>
-                <div class="form-group">
-                   <label for="Notice">Notice</label>
-                   <input class="form-control" id="Notice">
-                </div>
-                <div class="form-group">
-                   <label for="bloodType"> Blood Type </label>
-                   <select name="BloodList" id="bloodType" class="form-control">
-                      <option value="O Positive"> O Positive </option>
-                      <option value="O Negative"> O Negative </option>
-                      <option value="A Positive"> A Positive </option>
-                      <option value="A Negative"> A Negative </option>
-                      <option value="B Positive"> B Positive </option>
-                      <option value="B Negative"> B Negative </option>
-                      <option value="AB Positive"> AB Positive </option>
-                      <option value="AB Negative"> AB Negative </option>
-                   </select>
-                </div>
-                <button type="submit" name="button" id="button" class="btn btn-primary"> Request </button>
-             </form>
-          </div>
-       </div>
-    </div>
- </body>
-
-  <script type="text/javascript">
-      const { ipcRenderer } = require('electron');
-
-      const form = document.querySelector('form')
-      form.addEventListener('submit', submitForm);
-
-      function submitForm(e){
-        const bloodType = document.getElementById("bloodType").value;
-        const requestType = document.getElementById("requestType").value;
-        const Notice = document.getElementById("Notice").value;
-        e.preventDefault();
-        ipcRenderer.send('Request:DonorInformation', requestType, bloodType, Notice);
-    }
-  </script>
-
+   <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <meta charset="utf-8">
+      <title> Donor Request </title>
+      <style media="screen">
+         body {
+         background-color: #f4f4f2;
+         }
+         .center_div {
+         margin: 0 auto;
+         width:80% /* value of your choice which suits your alignment */
+         }
+         h2 {
+         padding-bottom: 20px
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container center_div">
+         <div class="row">
+            <div>
+               <h2>Request Donor</h2>
+               <form name="requestForm">
+                  <div class="form-group">
+                     <label for="requestType">Request Type</label>
+                     <input class="form-control" id="requestType" name="reqType">
+                  </div>
+                  <div class="form-group">
+                     <label for="Notice">Notice</label>
+                     <select name="noticeType" id="Notice" class="form-control">
+                        <option value="Immediate"> Immediate </option>
+                        <option value="Three Days"> Three Days </option>
+                        <option value="One Week"> One Week </option>
+                        <option value="Two Weeks"> Two Weeks </option>
+                        <option value="One Month"> One Month </option>
+                        <option value="Two Months"> Two Months </option>
+                     </select>
+                  </div>
+                  <div class="form-group">
+                     <label for="bloodType"> Blood Type </label>
+                     <select name="BloodList" id="bloodType" class="form-control">
+                        <option value="O Positive"> O Positive </option>
+                        <option value="O Negative"> O Negative </option>
+                        <option value="A Positive"> A Positive </option>
+                        <option value="A Negative"> A Negative </option>
+                        <option value="B Positive"> B Positive </option>
+                        <option value="B Negative"> B Negative </option>
+                        <option value="AB Positive"> AB Positive </option>
+                        <option value="AB Negative"> AB Negative </option>
+                     </select>
+                  </div>
+                  <button type="button" name="button" id="requestButton" class="btn btn-primary"> Request </button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </body>
+   <script src="./src/requestWindow.js"></script> <!-- Adding scripts here so the page can load and Js/Css can get all elements within it-->
+   <!-- <link rel="stylesheet" href="C:/Users/Sharjeel Jan/Desktop/NHS-App/assets/css/requestWindow.css"> -->
 </html>
