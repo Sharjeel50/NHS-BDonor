@@ -69,3 +69,7 @@ table thead {
   background-color: white;
   color: black;
 }
+
+.container {
+  padding-top: 45px;
+}
