@@ -48,9 +48,17 @@
 <script type="text/javascript">
   const { ipcRenderer } = require('electron');
   const form = document.querySelector('form')
+  var AWS = require("aws-sdk");
+
+  AWS.config.update({
+    region: "eu-west-2",
+    endpoint: "dynamodb.eu-west-2.amazonaws.com"
+  });
+
+  var docClient = new AWS.DynamoDB.DocumentClient();
 
   form.addEventListener('submit', sendSetup);
-  form.addEventListener('submit', getLocation);
+  form.addEventListener('submit', addToDynamoDB)
 
   function sendSetup(e) {
     const hospitalName = document.getElementById("hospitalName").value;
@@ -62,8 +70,25 @@
 
   }
 
-  function getLocation(){
-  fetch('https://api.ipgeolocation.io/ipgeo?apiKey=0f1e2eb168174869aebbfa0fc92010d8').then(function(res){ console.log(res);})
+  function addToDynamoDB(){
+      var params = {
+        TableName: "Hospitals",
+        Item:{
+              "HospitalName": document.getElementById("hospitalName").value,
+              "StreetAddress": document.getElementById("streetAddress").value,
+              "City": document.getElementById("City").value,
+              "PostCode": document.getElementById("postalCode").value
+          }
+      };
+
+    console.log("Adding a new item...");
+    docClient.put(params, function(err, data) {
+        if (err) {
+            console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            console.log("Added item:", JSON.stringify(data, null, 2));
+        }
+    });
   }
 
 </script>

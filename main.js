@@ -7,6 +7,7 @@ let win
 let requestWindow
 let configWindow
 let donorWindow
+let changeHospitalDataWindow
 
 function createWindow () {
   win = new BrowserWindow({ width: 1700, height: 950 })
@@ -46,8 +47,13 @@ function createWindow () {
 
   // Create Donor viewing Page
   function createDonorWindow(){
-    let donorWindow = new BrowserWindow({width: 500, height: 700})
+    let donorWindow = new BrowserWindow( {width: 500, height: 700 })
     donorWindow.loadFile('./src/viewDonors.html')
+  }
+
+  function changeHospitalData(){
+    let changeHospitalDataWindow = new BrowserWindow({ width: 330, height: 550 })
+    console.log("Needs to be implemented with DynamoDB Data")
   }
 
 
@@ -64,7 +70,8 @@ function createWindow () {
   {
     label: 'Configuration',
     submenu: [
-      {label: 'Setup', click() { createConfigWidow(); }} // Run function to create a new window
+      {label: 'Setup', click() { createConfigWidow(); }}, // Run function to create a new window
+      {label: 'Change Config', click() { changeHospitalData(); } }
     ]
   },
   {
